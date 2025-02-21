@@ -25,7 +25,7 @@ A Telegram bot that helps users check their class schedule. Built with Python an
 
 ## TODO
 
-- [x] Add daily class schedules~
+- [x] ~Add daily class schedules~
 - [ ] Connect the database
 - [ ] Add links to remote classes
 - [ ] Split the schedule into numerator/denominator
