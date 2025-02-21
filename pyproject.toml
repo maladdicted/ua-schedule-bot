@@ -1,0 +1,14 @@
+[project]
+name = "ua-schdeule-bot"
+version = "1.0.0"
+dependencies = [
+    "aiogram>=3.18.0",
+]
+description = "Ukrainian Schedule Telegram Bot"
+authors = [{name = "Maksym Vecher"}]
+readme = "README.md"
+license-files = ["LICENSE"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3.12"
+]
