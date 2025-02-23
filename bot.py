@@ -5,7 +5,7 @@ from os import getenv
 
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import CommandStart
-from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup
+from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup
 
 # Telegram bot token
 TOKEN = getenv("BOT_TOKEN")
@@ -14,17 +14,66 @@ TOKEN = getenv("BOT_TOKEN")
 dp = Dispatcher()
 
 # Inline keyboard
-kb = [
+kb_list = [
   [KeyboardButton(text="Понеділок"), KeyboardButton(text="Вівторок")],
   [KeyboardButton(text="Середа"), KeyboardButton(text="Четвер")],
   [KeyboardButton(text="П'ятниця"), KeyboardButton(text="Субота")],
 ]
 
-markup = ReplyKeyboardMarkup(
-  keyboard=kb,
+kb_markup = ReplyKeyboardMarkup(
+  keyboard=kb_list,
   resize_keyboard=True,
   input_field_placeholder="Вибери день тижня 👇"
 )
+
+# Monday url inline buttons
+mon_list = [[
+  InlineKeyboardButton(text="1️⃣", url="https://meet.google.com/aeg-mkfg-wtb"),
+  InlineKeyboardButton(text="2️⃣", url="https://meet.google.com/rog-fzcb-fjb"),
+  InlineKeyboardButton(text="3️⃣", url="https://meet.google.com/yev-bqkk-zbo"),
+  InlineKeyboardButton(text="4️⃣", url="https://meet.google.com/miw-bhyc-cuw"),
+]]
+
+mon_markup = InlineKeyboardMarkup(inline_keyboard=mon_list)
+
+# Tuesday url inline buttons
+tue_list = [[
+  InlineKeyboardButton(text="🅰️", url="https://meet.google.com/ija-dpdx-yxo"),
+  InlineKeyboardButton(text="2️⃣", url="https://meet.google.com/jkj-hufa-btb"),
+  InlineKeyboardButton(text="3️⃣", url="https://meet.google.com/jkj-hufa-btb"),
+  InlineKeyboardButton(text="4️⃣", url="https://meet.google.com/rog-fzcb-fjb"),
+]]
+
+tue_markup = InlineKeyboardMarkup(inline_keyboard=tue_list)
+
+# Wednesday url inline buttons
+wed_list = [[
+  InlineKeyboardButton(text="1️⃣", url="https://meet.google.com/rdn-owjq-spf"),
+  InlineKeyboardButton(text="2️⃣", url="https://meet.google.com/syi-gpek-nyf"),
+  InlineKeyboardButton(text="3️⃣", url="https://meet.google.com/fnm-oibj-wrm"),
+  InlineKeyboardButton(text="4️⃣", url="https://meet.google.com/ija-dpdx-yxo"),
+]]
+
+wed_markup = InlineKeyboardMarkup(inline_keyboard=wed_list)
+
+# Thursday url inline buttons
+thu_list = [[
+  InlineKeyboardButton(text="1️⃣", url="https://meet.google.com/qys-rwbx-cch"),
+  InlineKeyboardButton(text="🅰️", url="https://meet.google.com/fnm-oibj-wrm"),
+  InlineKeyboardButton(text="🅱️", url="https://meet.google.com/jkj-hufa-btb"),
+  InlineKeyboardButton(text="3️⃣", url="https://meet.google.com/bus-vxaa-mnk"),
+  InlineKeyboardButton(text="4️⃣", url="https://meet.google.com/mpj-kneu-gxa"),
+]]
+
+thu_markup = InlineKeyboardMarkup(inline_keyboard=thu_list)
+
+# Friday url inline buttons
+fri_list = [[
+  InlineKeyboardButton(text="2️⃣", url="https://meet.google.com/miw-bhyc-cuw"),
+  InlineKeyboardButton(text="3️⃣", url="https://meet.google.com/oda-asnh-vtq"),
+]]
+
+fri_markup = InlineKeyboardMarkup(inline_keyboard=fri_list)
 
 @dp.message(F.text, CommandStart())
 async def start(msg: Message) -> None:
@@ -35,7 +84,7 @@ async def start(msg: Message) -> None:
   sends a welcome message with a keyboard to choose day of the week
   """
   await msg.answer(f"Привіт, <b>{msg.from_user.full_name}</b>! 👋", parse_mode="HTML")
-  await msg.answer("Я підкажу розклад 🗓️", reply_markup=markup)
+  await msg.answer("Я підкажу розклад 🗓️", reply_markup=kb_markup)
   
 @dp.message(F.text == "Понеділок")
 async def monday(msg: Message) -> None:
@@ -53,7 +102,8 @@ async def monday(msg: Message) -> None:
     "3️⃣ Географія\n"
     "🕚 11:10 – 12:10\n\n"
     "4️⃣ Математика\n"
-    "🕧 12:20 – 13:20"
+    "🕧 12:20 – 13:20",
+    reply_markup=mon_markup,
   )
 
 @dp.message(F.text == "Вівторок")
@@ -72,7 +122,8 @@ async def tuesday(msg: Message) -> None:
     "3️⃣ Громадянська освіта\n"
     "🕚 11:10 – 12:10\n\n"
     "4️⃣ Українська мова\n"
-    "🕧 12:20 – 13:20"
+    "🕧 12:20 – 13:20",
+    reply_markup=tue_markup,
   )
 
 @dp.message(F.text == "Середа")
@@ -91,7 +142,8 @@ async def wednesday(msg: Message) -> None:
     "3️⃣ Фізика та астрономія\n"
     "🕚 11:10 – 12:10\n\n"
     "4️⃣ Захист України\n"
-    "🕧 12:20 – 13:20"
+    "🕧 12:20 – 13:20",
+    reply_markup=wed_markup,
   )
 
 @dp.message(F.text == "Четвер")
@@ -110,7 +162,8 @@ async def thursday(msg: Message) -> None:
     "3️⃣ Хімія\n"
     "🕚 11:10 – 12:10\n\n"
     "4️⃣ Правознавство\n"
-    "🕧 12:20 – 13:20"
+    "🕧 12:20 – 13:20",
+    reply_markup=thu_markup,
   )
 
 @dp.message(F.text == "П'ятниця")
@@ -127,7 +180,8 @@ async def friday(msg: Message) -> None:
     "2️⃣ Математика\n"
     "🕤 09:40 – 10:40\n\n"
     "3️⃣ Біологія та екологія\n"
-    "🕚 11:10 – 12:10\n\n"
+    "🕚 11:10 – 12:10",
+    reply_markup=fri_markup,
   )
 
 @dp.message(F.text == "Субота")
