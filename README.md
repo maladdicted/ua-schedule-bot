@@ -20,14 +20,14 @@ A Telegram bot that helps users check their class schedule. Built with Python an
 
 ### Technology Stack
 
-- Python 3.11
+- Python 3.12
 - aiogram 3.18.0
 
 ## TODO
 
 - [x] ~Add daily class schedules~
 - [ ] Connect the database
-- [ ] Add links to remote classes
+- [x] ~Add links to remote classes~
 - [ ] Split the schedule into numerator/denominator
 - [ ] Display the week type (numerator or denominator)
 - [ ] Add teacher names
